@@ -263,4 +263,4 @@ If this saved you from a bad decision (or made a good one clearer), star the rep
 
 ---
 
-*Built with Claude. The Council is not responsible for the decisions you make after consulting it. The Council is responsible for making sure you've thought about them properly.*
+*Built by Hussain Ali. The Council is not responsible for the decisions you make after consulting it. The Council is responsible for making sure you've thought about them properly.*
