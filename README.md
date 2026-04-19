@@ -86,7 +86,7 @@ crosses a threshold that makes the choice obvious, not courageous.
 ═══════════════════════════════════════════════════════════════════
 
 POSITION: Do not quit yet. Spend 60 days running the concierge approach while
-employed — if you reach 5 paying customers at any price, quit immediately.
+employed — if you reach 10 paying customers at any price, quit immediately.
 
 CONFIDENCE: 74% — What would move this to 85%: 3 customers who paid without
 being coaxed. What would move it to 50%: a partner conversation that surfaces
