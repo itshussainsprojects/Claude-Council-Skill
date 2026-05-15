@@ -1,5 +1,5 @@
 # Claude Council
-
+name: Claude Council
 **A Claude skill that convenes 7 expert AI personas to debate any decision, idea, or problem — then synthesizes a verdict.**
 
 > *"I had 7 AIs argue about whether I should quit my job. It was the most useful thing I've done for my career all year."*
