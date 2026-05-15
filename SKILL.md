@@ -1,3 +1,7 @@
+---
+name: Claude Council
+description: A council of AI experts that debate ideas and decisions
+---
 # Claude Council
 
 **A Claude skill that convenes 7 expert AI personas to debate any decision, idea, or problem — then synthesizes a verdict.**
