@@ -374,3 +374,36 @@ It helps other people find it.
 *The Council is responsible for making sure you've thought about them properly.*
 
 </div>
+
+---
+
+## 🌐 Live Demo Site
+
+**Try the interactive demo:** [itshussainsprojects.github.io/Claude-Council-Skill](https://itshussainsprojects.github.io/Claude-Council-Skill)
+
+See 4 famous decisions debated live — with tabs, persona cards, and full verdicts.
+
+---
+
+## 📜 Famous Decisions — The Council Weighs In
+
+What would the Council have said about the biggest decisions in business history?
+
+| Decision | Verdict | Confidence |
+|----------|---------|-----------|
+| [⚡ Steve Jobs return to Apple (1997)](examples/famous-decisions/jobs-return-to-apple.md) | Take it — founding frame, not turnaround | 79% |
+| [🐦 Elon Musk buy Twitter for $44B](examples/famous-decisions/musk-buy-twitter.md) | Don't — debt structure makes it near-impossible | 61% |
+| [📘 Zuckerberg drop out of Harvard](examples/famous-decisions/zuckerberg-harvard-dropout.md) | Drop out — winner-take-all, speed is everything | 82% |
+| [📺 Netflix pivot to streaming (2007)](examples/famous-decisions/netflix-dvd-to-streaming.md) | Build streaming, keep DVDs as runway | 76% |
+
+> *The Adversary on Jobs returning to Apple:* "You're not being brought back because they believe in you. You're being brought back because everyone else failed."
+
+> *The Visionary on Zuckerberg:* "You're asking whether to finish your homework before discovering fire."
+
+> *The Philosopher on Musk/Twitter:* "One person owning the infrastructure of global public discourse has no historical precedent in a private transaction."
+
+What famous decision should the Council analyze next? [Open an issue →](https://github.com/itshussainsprojects/Claude-Council-Skill/issues)
+
+---
+
+*Developed by Hussain Ali*
