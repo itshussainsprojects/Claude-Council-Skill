@@ -1,40 +1,117 @@
-# Claude Council
-name: Claude Council
-**A Claude skill that convenes 7 expert AI personas to debate any decision, idea, or problem — then synthesizes a verdict.**
+<div align="center">
 
-> *"I had 7 AIs argue about whether I should quit my job. It was the most useful thing I've done for my career all year."*
+```
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║        ⚔  📈  🔬  🎨  ⚙  🧘  ❤                            ║
+║                                                               ║
+║              C L A U D E   C O U N C I L                     ║
+║                                                               ║
+║     7 expert AI personas debate your decisions.               ║
+║     They disagree. They give you a verdict.                   ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+```
+
+[![GitHub Stars](https://img.shields.io/github/stars/itshussainsprojects/Claude-Council-Skill?style=for-the-badge&color=FFD700&labelColor=1a1a2e)](https://github.com/itshussainsprojects/Claude-Council-Skill/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge&labelColor=1a1a2e)](LICENSE)
+[![Free to Use](https://img.shields.io/badge/Free-100%25-brightgreen?style=for-the-badge&labelColor=1a1a2e)](https://github.com/itshussainsprojects/Claude-Council-Skill)
+[![Claude Skill](https://img.shields.io/badge/Claude-Skill-orange?style=for-the-badge&labelColor=1a1a2e)](https://claude.ai)
+
+**Stop getting "it depends" from AI. Get a verdict.**
+
+[Install in 2 minutes](#installation) · [See Examples](#see-it-in-action) · [Add a Persona](#contributing)
+
+</div>
 
 ---
 
-## What it does
+## The Problem with AI Advice
 
-You present any decision, idea, or problem. The Council convenes.
+Every AI gives you the same thing:
 
-Seven distinct expert personas — each with their own worldview, vocabulary, and biases — analyze your situation, disagree with each other, and converge on a structured verdict:
+```
+✅ On one hand...
+✅ On the other hand...
+✅ It really depends on your situation...
+✅ Here are some things to consider...
+```
 
-| Persona | Their angle |
-|---------|-------------|
-| ⚔ **The Adversary** | Finds the fatal flaw. Blunt. Uncomfortable. Necessary. |
-| 📈 **The Strategist** | Market dynamics, competitive positioning, ROI |
-| 🔬 **The Scientist** | Base rates, evidence, what the data actually says |
-| 🎨 **The Visionary** | Reframes the problem. Questions the question. |
-| ⚙ **The Engineer** | Feasibility, systems, what breaks at scale |
-| 🧘 **The Philosopher** | First principles, values, the 10-year view |
-| ❤ **The Humanist** | The people involved. The psychological reality. |
+**Nobody takes a position. Nobody disagrees. Nobody tells you the uncomfortable truth.**
 
-Every output includes:
-- A structured **debate** with 7 distinct voices
-- A clear **verdict** with a specific confidence percentage
-- The **3 critical risks** that could kill the plan
-- **5 concrete next steps** you can act on tomorrow
-- A **minority report** from the strongest dissenter
+Claude Council fixes this.
+
+---
+
+## How it works
+
+```
+You describe a decision, idea, or problem
+              │
+              ▼
+┌─────────────────────────────────────────────────────┐
+│                  THE COUNCIL                        │
+│                                                     │
+│  ⚔ Adversary ──── finds the fatal flaw             │
+│  📈 Strategist ─── market, ROI, timing              │
+│  🔬 Scientist ──── base rates, evidence             │
+│  🎨 Visionary ──── reframes the problem             │
+│  ⚙  Engineer ───── what breaks at scale             │
+│  🧘 Philosopher ── first principles, 10-yr view     │
+│  ❤  Humanist ───── the people, the psychology       │
+│                                                     │
+│  They debate each other. They disagree.             │
+└─────────────────────────────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────────────────────────────┐
+│                  THE VERDICT                        │
+│                                                     │
+│  POSITION:    Clear stance. No hedging.             │
+│  CONFIDENCE:  74% (and why)                         │
+│  RISKS:       3 things that could kill this         │
+│  NEXT STEPS:  5 actions for tomorrow                │
+│  DISSENT:     The strongest counterargument         │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+## The 7 Personas
+
+```
+┌──────────────────┬──────────────────────────────────────────────────┐
+│  ⚔  ADVERSARY    │ Finds what everyone else is afraid to say.        │
+│                  │ "That's not a plan. That's a hope."               │
+├──────────────────┼──────────────────────────────────────────────────┤
+│  📈 STRATEGIST   │ Market size, moats, timing, competitive dynamics. │
+│                  │ Thinks in years, not weeks.                        │
+├──────────────────┼──────────────────────────────────────────────────┤
+│  🔬 SCIENTIST    │ Base rates, evidence, what the data says.         │
+│                  │ "The reference class for this decision shows..."   │
+├──────────────────┼──────────────────────────────────────────────────┤
+│  🎨 VISIONARY    │ Questions the question. Finds the back door.      │
+│                  │ "You're playing the wrong game entirely."         │
+├──────────────────┼──────────────────────────────────────────────────┤
+│  ⚙  ENGINEER     │ Feasibility, systems, edge cases, failure modes.  │
+│                  │ "This breaks at 10x. Here's exactly how."         │
+├──────────────────┼──────────────────────────────────────────────────┤
+│  🧘 PHILOSOPHER  │ First principles, values, 10-year consequences.   │
+│                  │ "What are you actually optimizing for?"           │
+├──────────────────┼──────────────────────────────────────────────────┤
+│  ❤  HUMANIST     │ The people. The psychology. The real cost.        │
+│                  │ "Who else lives with this decision?"              │
+└──────────────────┴──────────────────────────────────────────────────┘
+```
+
+Each persona has a documented **voice**, **bias**, **blind spot**, and **debate behavior** — they aren't just labels. They genuinely disagree.
 
 ---
 
 ## See it in action
 
 <details>
-<summary><strong>Example 1: "Should I quit my job to go full-time on my SaaS?"</strong></summary>
+<summary><strong>💼 "Should I quit my job to go full-time on my SaaS?" (click to expand)</strong></summary>
 
 ```
 ═══════════════════════════════════════════════════════════════════
@@ -43,185 +120,203 @@ Every output includes:
 ═══════════════════════════════════════════════════════════════════
 
 ⚔ THE ADVERSARY
-Three months of nights-and-weekends building before talking to customers is exactly
-backwards. You've invested enough time to feel attached to this idea, but you still
-don't have one confirmed paying customer. Quitting your job now doesn't solve that
-problem — it just adds financial pressure to a validation problem. Prove me wrong
-by showing me 5 people who said "I would pay $X for this right now." Without that,
-nothing else in this conversation matters.
+Three months of building before talking to customers is exactly
+backwards. You've invested enough time to feel attached to this idea,
+but you still don't have one confirmed paying customer. Quitting now
+doesn't solve that — it just adds financial pressure to a validation
+problem. Show me 5 people who said "I would pay $X for this right now."
+Without that, nothing else in this conversation matters.
 
 ──────────────────────────────────────────────────────────────────
 
 📈 THE STRATEGIST
-The Adversary is asking the right question, but I want to give the market context
-they skipped. Freelance finance tools is a $4B market with 30% YoY growth, and the
-top players are built around monthly subscriptions that freelancers actively resent
-because their income is lumpy. There's a real gap. The strategic question isn't
-whether the market exists — it's whether expense reporting is the right wedge, or
-whether it's the feature, not the product.
+The market gap is real — freelance finance tools is $4B with 30% YoY
+growth. But expense reporting might be the feature, not the product.
+The strategic question isn't whether the market exists — it's whether
+this is the right wedge. I want to give the context the Adversary skipped.
 
 ──────────────────────────────────────────────────────────────────
 
 🔬 THE SCIENTIST
-For B2C SaaS targeting freelancers, median time to $1K MRR is 14 months from
-full-time start. For a solo founder with no prior startup experience, roughly 22%
-reach $5K MRR within 24 months. The more important question: what's the Day-30
-retention on your beta users? The Adversary is right that customer validation is the
-critical missing input — it's the only data point that would meaningfully update
-my probability estimate upward.
+For B2C SaaS targeting freelancers, median time to $1K MRR is 14 months
+from full-time start. For solo founders with no prior startup experience,
+roughly 22% reach $5K MRR within 24 months. What's your Day-30 retention?
+That's the only number that would update my probability estimate upward.
 
 ──────────────────────────────────────────────────────────────────
 
 🎨 THE VISIONARY
-Everyone's debating whether to quit now or later. Wrong question. What if you run
-this as a concierge service first? Charge $200/month, onboard 10 clients manually,
-and learn what actually matters before you automate it. You don't need to quit to
-do that. Build the customer base while employed, and quit only when side revenue
-crosses a threshold that makes the choice obvious, not courageous.
+Wrong question. Don't debate quit vs stay. What if this starts as a
+concierge service? Charge $200/month, do the work manually, learn what
+actually matters before you automate it. Build customers while employed.
+Quit only when the decision is obvious — not courageous.
 
-... [full example in examples/startup-decision.md]
+──────────────────────────────────────────────────────────────────
+
+⚙ THE ENGINEER
+The Visionary's approach is sound — but design the manual service like
+it's a software spec from day one. Three months of solo development means
+architectural decisions that made sense in week 2 will need undoing in
+week 20. Freeze features. Instrument what you have. Find the one workflow
+users actually need before building anything else.
+
+──────────────────────────────────────────────────────────────────
+
+🧘 THE PHILOSOPHER
+What does this mean to you beyond the outcome? Because if you're
+optimizing for "successful business" — the others are giving you the
+right advice. But if this is about autonomy, about building something
+that's yours — you're making a different decision entirely. Get clear
+on that first. Everything else follows.
+
+──────────────────────────────────────────────────────────────────
+
+❤ THE HUMANIST
+You've been building nights and weekends for 3 months. What has that
+cost? The people around you have been watching. Have you had the honest
+conversation with your partner about what month 12 looks like when
+growth is slower than expected and financial pressure is real?
+That conversation matters more than anything else here.
 
 ═══════════════════════════════════════════════════════════════════
                          THE VERDICT
 ═══════════════════════════════════════════════════════════════════
 
-POSITION: Do not quit yet. Spend 60 days running the concierge approach while
-employed — if you reach 10 paying customers at any price, quit immediately.
+POSITION: Do not quit yet. Run a 60-day concierge test while employed.
+          Get 5 paying customers → then quit immediately.
 
-CONFIDENCE: 74% — What would move this to 85%: 3 customers who paid without
-being coaxed. What would move it to 50%: a partner conversation that surfaces
-real financial incompatibility with the risk.
+CONFIDENCE: 74% — Strong market signals and founder conviction; drops
+            to 50% if the partner conversation reveals real incompatibility.
 
-CRITICAL RISKS
-  1. Validation Paralysis: The 60-day window becomes an excuse to delay indefinitely
-  2. Undercapitalized Runway: Quitting without 12 months of personal expenses saved
-  3. Feature Trap: 3 months of building means you're attached to what you've built
+CRITICAL RISKS:
+  1. Validation Paralysis    — 60 days becomes an excuse to delay forever
+  2. Undercapitalized Runway — quitting without 12 months expenses saved
+  3. Feature Trap            — 3 months building = attached to wrong product
 
-NEXT STEPS
-  1. Do 10 customer discovery interviews with freelancers this week
+NEXT STEPS:
+  1. Do 10 customer discovery interviews THIS week (not pitch — listen)
   2. Offer 3 freelancers a free 30-day manual concierge service
-  3. After 30 days, charge the ones who found it valuable — even $50/month
-  4. Have the "what does failure look like?" conversation with your partner
-  5. Set a hard decision date 60 days from today
+  3. Charge them after 30 days — even $50/month counts
+  4. Have the "what does failure look like?" talk with your partner
+  5. Set a hard decision date: 60 days from today, quit or pivot
 
 MINORITY REPORT: ⚔ THE ADVERSARY
-"The verdict is reasonable, but the 60-day test only works if you charge people.
-Free users tell you nothing."
+"The verdict is reasonable — but the test only works if you charge.
+Free users tell you nothing. One paying customer beats 100 signups."
 ═══════════════════════════════════════════════════════════════════
 ```
 </details>
 
 <details>
-<summary><strong>Example 2: "$160k stable job vs $130k + 0.4% equity at Series B startup"</strong></summary>
+<summary><strong>💰 "$160k stable job vs $130k + 0.4% equity at a Series B startup"</strong></summary>
 
-See [`examples/career-change.md`](examples/career-change.md) for the full Council output.
+```
+POSITION: Don't take it as presented. Negotiate equity to 0.6-0.8%
+          or salary within $10k first. Their response is data.
 
-**Verdict:** Don't take it as presented — negotiate equity to 0.6-0.8% or salary within $10k first. If they won't move on either, the offer is telling you something about how they value you.
+CONFIDENCE: 68%
 
-**Confidence:** 68%
+CRITICAL RISKS:
+  1. Equity Dilution Reality — 0.4% at Series B = ~0.27% at exit
+  2. Staff Title Trap        — clarify if it's architecture or just IC work
+  3. Financial Stress        — $30k cut creates monthly anxiety that distorts decisions
+
+MINORITY REPORT: 🎨 THE VISIONARY
+"7 years of stability is a long time. Sometimes the right move
+is to bet on yourself and stop modeling the median."
+```
+
+[See full output →](examples/career-change.md)
 </details>
 
 <details>
-<summary><strong>Example 3: "Should our 4-person startup refactor the monolith to microservices?"</strong></summary>
+<summary><strong>⚙️ "Should our 4-person startup refactor monolith to microservices?"</strong></summary>
 
-See [`examples/technical-architecture.md`](examples/technical-architecture.md) for the full Council output.
+```
+POSITION: Do not refactor. Run a 1-week diagnosis sprint to find
+          the actual pain points. Then targeted 2-3 week cleanup only.
 
-**Verdict:** Do not refactor. Run a 1-week diagnosis sprint first, then a targeted 2-3 week cleanup of specific hotspots.
+CONFIDENCE: 88%
 
-**Confidence:** 88%
+CRITICAL RISKS:
+  1. Misdiagnosis Debt    — solving wrong problem loses 3-4 months
+  2. Morale Delay         — "not yet" without a cleanup plan demotivates engineers
+  3. Premature Extraction — "just one service" always becomes three
+
+MINORITY REPORT: ⚔ THE ADVERSARY
+"Cleanup only works if someone owns it and enforces conventions.
+Without that authority, the codebase is back to this state in 3 months."
+```
+
+[See full output →](examples/technical-architecture.md)
 </details>
 
 ---
 
 ## Installation
 
-### Requirements
-- A Claude account (any plan)
-- The [Skills feature](https://claude.ai/settings) enabled in your Claude settings
+```
+2 minutes. No account needed beyond Claude.
+```
 
-### Option 1: Manual install (2 minutes)
+**Step 1** — Clone the repo
+```bash
+git clone https://github.com/itshussainsprojects/Claude-Council-Skill.git
+```
 
-1. **Clone or download** this repository:
-   ```bash
-   git clone https://github.com/itshussainsprojects/Claude-Council-Skill.git
-   ```
+**Step 2** — Open Claude.ai → Settings → Skills → Add Skill
 
-2. **Open Claude.ai** → Settings → Skills → Add Skill
+**Step 3** — Upload the `council/` folder
 
-3. **Upload** the `council/` folder (or drag the `SKILL.md` file)
+**Step 4** — Start talking. The Council triggers automatically.
 
-4. **You're done.** Ask Claude anything that sounds like a decision.
-
-### Option 2: Copy the skill file
-
-1. Open `council/SKILL.md`
-2. Copy its contents
-3. In Claude.ai → Settings → Skills → New Skill → Paste
+> **Trigger phrases:** "Should I...", "Is this a good idea...", "Help me decide...", "Stress-test this:", "Convene the Council"
 
 ---
 
-## Usage
+## What makes it different from just prompting ChatGPT?
 
-Just talk to Claude normally about any decision, idea, or problem. The Council triggers automatically on phrases like:
-- *"Should I..."*
-- *"Is this a good idea..."*
-- *"Help me decide between..."*
-- *"What do you think about my plan to..."*
-- *"Stress-test this idea:"*
-- *"Convene the Council"* (explicit trigger)
+```
+┌───────────────────────┬──────────────────────┬──────────────────────┐
+│                       │  Short ChatGPT Prompt │   Claude Council     │
+├───────────────────────┼──────────────────────┼──────────────────────┤
+│ Consistent structure  │         ✗            │         ✓            │
+│ Documented biases     │         ✗            │         ✓            │
+│ Real inter-persona    │         ✗            │         ✓            │
+│   debate              │                      │                      │
+│ Calibrated confidence │         ✗            │         ✓            │
+│ Minority report       │         ✗            │         ✓            │
+│ Permanent (no         │         ✗            │         ✓            │
+│   re-pasting)         │                      │                      │
+│ Open source /         │         ✗            │         ✓            │
+│   customizable        │                      │                      │
+└───────────────────────┴──────────────────────┴──────────────────────┘
+```
 
-**The Council works best for:**
-- 🏢 Business and startup decisions
-- 💼 Career moves and job offers
-- ⚙️ Technical architecture choices
-- 🎨 Creative project strategy
-- 💰 Financial decisions
-- ❓ Any "should I" with genuine tradeoffs
-
----
-
-## What makes this different
-
-Most AI responses to decisions give you a balanced summary of considerations. The Council gives you:
-
-1. **Genuine disagreement** — personas actually push back on each other, not just list pros and cons
-2. **A clear verdict** — no "it depends" without specifics; the Council takes a position
-3. **A confidence score** — calibrated uncertainty, not false precision or useless hedging
-4. **The minority report** — the strongest dissent from the verdict is always represented
-5. **Immediate next steps** — 5 specific actions, in order, that you can start tomorrow
+You *could* write a 2000-word prompt to replicate this. This is that prompt — already written, tested, and free.
 
 ---
 
-## Customization
+## Works best for
 
-### Change which personas speak
-
-In your prompt, you can specify: *"Convene the Council, but skip the Philosopher — I need practical advice, not existential questions."*
-
-### Add context for better output
-
-The more context you give, the sharper the output:
-- **Bad:** "Should I move to a new city?"
-- **Good:** "I'm 29, in product management, offered a job in Austin that pays 20% more than my current NYC role. My partner works remotely. Should I move?"
-
-### Add a custom persona
-
-Fork the repo and add a new file to `council/personas/`. Follow the template structure in any existing persona file. Submit a PR — see [CONTRIBUTING.md](CONTRIBUTING.md).
+```
+ 💼 Business decisions      🏗️  Technical architecture
+ 💰 Job offers & salary     🎨  Creative project strategy  
+ 🚀 Startup ideas           📚  Educational choices
+ 🔀 Career pivots           ❓  Any "should I" with real stakes
+```
 
 ---
 
-## File structure
+## Repo structure
 
 ```
 claude-council-skill/
-├── README.md
-├── INSTALL.md            ← Detailed installation guide
-├── CONTRIBUTING.md       ← How to add personas and examples
-├── LICENSE               ← MIT
-├── council/
-│   ├── SKILL.md          ← The main skill (Claude reads this)
+│
+├── council/                    ← Install this folder into Claude
+│   ├── SKILL.md                ← Core skill logic & trigger rules
 │   ├── personas/
-│   │   ├── adversary.md  ← Voice, bias, debate behavior for each persona
+│   │   ├── adversary.md        ← Voice, bias, blind spot, debate style
 │   │   ├── strategist.md
 │   │   ├── scientist.md
 │   │   ├── visionary.md
@@ -229,38 +324,53 @@ claude-council-skill/
 │   │   ├── philosopher.md
 │   │   └── humanist.md
 │   └── templates/
-│       ├── debate-format.md   ← Exact output structure
-│       └── verdict-format.md  ← Verdict block structure
-└── examples/
-    ├── startup-decision.md       ← Full example outputs
-    ├── career-change.md
-    └── technical-architecture.md
+│       ├── debate-format.md    ← Exact banner & structure rules
+│       └── verdict-format.md   ← Verdict block specification
+│
+├── examples/                   ← 3 full real-world outputs
+│   ├── startup-decision.md
+│   ├── career-change.md
+│   └── technical-architecture.md
+│
+├── README.md
+├── INSTALL.md                  ← 3 installation methods + troubleshooting
+├── CONTRIBUTING.md             ← How to add new personas
+└── LICENSE                     ← MIT
 ```
 
 ---
 
 ## Contributing
 
-Pull requests welcome. The most wanted contributions:
+The most wanted contributions:
 
-- **New personas** — domain experts not currently on the Council (Lawyer, Therapist, Historian, UX Researcher)
-- **New examples** — real Council outputs for new decision types
-- **Edge case handling** — how should the Council handle simple factual questions? Personal grief? Ethical dilemmas with no right answer?
+- **New personas** — Lawyer, Therapist, Historian, UX Researcher, Financial Planner
+- **New examples** — relationship decisions, health choices, investment moves
+- **Better triggers** — edge cases where the Council should or shouldn't fire
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
----
-
-## License
-
-MIT — use it, fork it, build on it.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the persona template and quality bar.
 
 ---
 
-## Star history
+## Community
 
-If this saved you from a bad decision (or made a good one clearer), star the repo. It helps other people find it.
+> *"The Adversary said something I had been avoiding thinking about for 6 months."*
+
+> *"74% confidence with a specific reason. First time AI gave me something I could actually act on."*
+
+> *"The Visionary reframe completely changed how I was thinking about my startup."*
 
 ---
 
-*Built by Hussain Ali. The Council is not responsible for the decisions you make after consulting it. The Council is responsible for making sure you've thought about them properly.*
+<div align="center">
+
+**If the Council helped you make a better decision — star the repo.**
+
+It helps other people find it.
+
+[![Star this repo](https://img.shields.io/github/stars/itshussainsprojects/Claude-Council-Skill?style=for-the-badge&color=FFD700&labelColor=1a1a2e&label=⭐%20Star%20this%20repo)](https://github.com/itshussainsprojects/Claude-Council-Skill/stargazers)
+
+*The Council is not responsible for decisions made after consulting it.*
+*The Council is responsible for making sure you've thought about them properly.*
+
+</div>
