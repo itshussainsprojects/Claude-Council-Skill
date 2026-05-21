@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Council — 7 AI Experts Debate Your Decisions</title>
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --bg2: #16161a;
+    --bg3: #1e1e24;
+    --border: #2a2a35;
+    --text: #e8e8f0;
+    --muted: #888899;
+    --accent: #7c6aff;
+    --gold: #f5c842;
+    --red: #ff5e5e;
+    --green: #4ade80;
+    --blue: #60a5fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Courier New', monospace; min-height: 100vh; }
+
+  /* HERO */
+  .hero { text-align: center; padding: 60px 20px 40px; border-bottom: 1px solid var(--border); }
+  .banner { font-size: clamp(11px, 2vw, 14px); color: var(--gold); white-space: pre; line-height: 1.4; display: inline-block; text-align: left; margin-bottom: 24px; }
+  .tagline { font-size: clamp(14px, 3vw, 18px); color: var(--muted); margin-bottom: 8px; }
+  .hero h1 { font-size: clamp(20px, 5vw, 36px); font-weight: bold; color: var(--text); margin-bottom: 12px; letter-spacing: -0.5px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 20px 0; }
+  .badge { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 4px 12px; font-size: 12px; color: var(--muted); }
+  .badge span { color: var(--gold); }
+  .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+  .btn { padding: 10px 24px; border-radius: 6px; font-family: inherit; font-size: 13px; cursor: pointer; text-decoration: none; border: none; transition: opacity 0.2s; }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn:hover { opacity: 0.85; }
+
+  /* PERSONAS */
+  .personas-section { padding: 40px 20px; max-width: 900px; margin: 0 auto; }
+  .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 20px; }
+  .persona-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .persona-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 16px; border-left: 3px solid; }
+  .persona-card .emoji { font-size: 20px; margin-bottom: 8px; display: block; }
+  .persona-card h3 { font-size: 13px; color: var(--text); margin-bottom: 4px; }
+  .persona-card p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .persona-card .quote { font-size: 11px; color: var(--accent); margin-top: 8px; font-style: italic; }
+
+  /* FAMOUS DECISIONS */
+  .decisions-section { padding: 40px 20px; max-width: 900px; margin: 0 auto; border-top: 1px solid var(--border); }
+  .decision-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .tab { padding: 8px 16px; border-radius: 6px; font-family: inherit; font-size: 12px; cursor: pointer; border: 1px solid var(--border); background: var(--bg2); color: var(--muted); transition: all 0.2s; }
+  .tab.active { background: var(--accent); color: white; border-color: var(--accent); }
+  .decision-panel { display: none; }
+  .decision-panel.active { display: block; }
+  .decision-question { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-bottom: 20px; font-size: 13px; color: var(--gold); }
+
+  /* COUNCIL OUTPUT */
+  .council-banner { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; text-align: center; margin-bottom: 4px; }
+  .council-banner .title { color: var(--gold); font-size: 14px; letter-spacing: 3px; }
+  .council-banner .question { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  .persona-block { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin: 8px 0; }
+  .persona-label { font-size: 13px; font-weight: bold; margin-bottom: 10px; }
+  .persona-text { font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 4px 0; }
+
+  /* VERDICT */
+  .verdict-block { background: var(--bg3); border: 1px solid var(--accent); border-radius: 8px; padding: 20px; margin-top: 12px; }
+  .verdict-title { color: var(--gold); font-size: 13px; letter-spacing: 3px; text-align: center; margin-bottom: 16px; }
+  .verdict-position { font-size: 13px; color: var(--green); line-height: 1.6; margin-bottom: 12px; }
+  .verdict-confidence { font-size: 12px; color: var(--blue); margin-bottom: 16px; }
+  .verdict-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 8px; margin-top: 14px; }
+  .risk-item { font-size: 12px; color: var(--muted); padding: 6px 0; border-bottom: 1px solid var(--border); line-height: 1.6; }
+  .risk-item:last-child { border: none; }
+  .risk-name { color: var(--red); }
+  .step-item { font-size: 12px; color: var(--muted); padding: 5px 0; line-height: 1.6; }
+  .step-num { color: var(--accent); margin-right: 6px; }
+  .minority { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px; margin-top: 14px; font-size: 12px; color: var(--muted); font-style: italic; line-height: 1.6; }
+  .minority-label { color: var(--red); font-style: normal; font-size: 11px; margin-bottom: 4px; }
+
+  /* INSTALL */
+  .install-section { padding: 40px 20px; max-width: 900px; margin: 0 auto; border-top: 1px solid var(--border); }
+  .code-block { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; font-size: 13px; color: var(--green); line-height: 1.8; overflow-x: auto; }
+  .step-row { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 16px; }
+  .step-circle { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+  .step-content h4 { font-size: 13px; color: var(--text); margin-bottom: 4px; }
+  .step-content p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* FOOTER */
+  footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+  footer a { color: var(--accent); text-decoration: none; }
+  .dev-credit { color: var(--gold); margin-top: 8px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <pre class="banner">⚔  📈  🔬  🎨  ⚙  🧘  ❤
+C L A U D E   C O U N C I L</pre>
+  <p class="tagline">Stop getting "it depends." Get a verdict.</p>
+  <h1>7 Expert AI Personas Debate<br>Your Decisions</h1>
+  <div class="badges">
+    <div class="badge">⭐ <span id="stars">32</span> Stars on GitHub</div>
+    <div class="badge">🆓 Free & Open Source</div>
+    <div class="badge">⚡ 2 Min Install</div>
+    <div class="badge">🤖 Claude Skill</div>
+  </div>
+  <div class="cta-row">
+    <a href="https://github.com/itshussainsprojects/Claude-Council-Skill" class="btn btn-primary" target="_blank">⭐ Star on GitHub</a>
+    <a href="#install" class="btn btn-secondary">Install Now →</a>
+  </div>
+</div>
+
+<!-- PERSONAS -->
+<div class="personas-section">
+  <div class="section-title">The 7 Personas</div>
+  <div class="persona-grid">
+    <div class="persona-card" style="border-color:#ff5e5e">
+      <span class="emoji">⚔</span>
+      <h3>The Adversary</h3>
+      <p>Finds the fatal flaw. Blunt. Uncomfortable. Necessary.</p>
+      <div class="quote">"That's not a plan. That's a hope."</div>
+    </div>
+    <div class="persona-card" style="border-color:#4ade80">
+      <span class="emoji">📈</span>
+      <h3>The Strategist</h3>
+      <p>Market dynamics, competitive positioning, ROI.</p>
+      <div class="quote">"The window is open. How long does it stay open?"</div>
+    </div>
+    <div class="persona-card" style="border-color:#60a5fa">
+      <span class="emoji">🔬</span>
+      <h3>The Scientist</h3>
+      <p>Base rates, evidence, what the data actually says.</p>
+      <div class="quote">"The reference class for this decision shows..."</div>
+    </div>
+    <div class="persona-card" style="border-color:#f5c842">
+      <span class="emoji">🎨</span>
+      <h3>The Visionary</h3>
+      <p>Reframes the problem. Questions the question.</p>
+      <div class="quote">"You're playing the wrong game entirely."</div>
+    </div>
+    <div class="persona-card" style="border-color:#a78bfa">
+      <span class="emoji">⚙</span>
+      <h3>The Engineer</h3>
+      <p>Feasibility, systems thinking, what breaks at scale.</p>
+      <div class="quote">"This breaks at 10x. Here's exactly how."</div>
+    </div>
+    <div class="persona-card" style="border-color:#fb923c">
+      <span class="emoji">🧘</span>
+      <h3>The Philosopher</h3>
+      <p>First principles, values, the 10-year view.</p>
+      <div class="quote">"What are you actually optimizing for?"</div>
+    </div>
+    <div class="persona-card" style="border-color:#f472b6">
+      <span class="emoji">❤</span>
+      <h3>The Humanist</h3>
+      <p>The people involved. The psychological reality.</p>
+      <div class="quote">"Who else lives with this decision?"</div>
+    </div>
+  </div>
+</div>
+
+<!-- FAMOUS DECISIONS -->
+<div class="decisions-section">
+  <div class="section-title">Famous Decisions — Run Through The Council</div>
+  <div class="decision-tabs">
+    <button class="tab active" onclick="showDecision(0)">⚡ Steve Jobs</button>
+    <button class="tab" onclick="showDecision(1)">🐦 Elon & Twitter</button>
+    <button class="tab" onclick="showDecision(2)">📘 Zuckerberg</button>
+    <button class="tab" onclick="showDecision(3)">📺 Netflix Pivot</button>
+  </div>
+
+  <!-- Decision 0: Steve Jobs -->
+  <div class="decision-panel active" id="panel-0">
+    <div class="decision-question">💼 "Should Steve Jobs return to Apple as CEO in 1997?" — Apple was 90 days from bankruptcy.</div>
+    <div class="persona-block">
+      <div class="persona-label" style="color:#ff5e5e">⚔ THE ADVERSARY</div>
+      <div class="persona-text">Apple is 90 days from bankruptcy. The board that brought you back is the same institutional culture that fired you twelve years ago. You're not being brought back because they believe in you — you're being brought back because everyone else failed. You've spent 12 years building NeXT and Pixar, two companies that actually work. Walking into Apple means inheriting someone else's catastrophic decisions and betting your entire reputation on fixing what a decade of mediocrity broke.</div>
+    </div>
+    <hr class="divider">
+    <div class="persona-block">
+      <div class="persona-label" style="color:#4ade80">📈 THE STRATEGIST</div>
+      <div class="persona-text">Apple has something almost no bankrupt company has: a fanatically loyal customer base that still believes in the brand even as the company collapses. The Mac faithful exist. That's an asset no balance sheet captures. The strategic play isn't to save Apple as it exists — it's to burn the product line to the ground, keep the brand and distribution, and rebuild around one or two products that are actually great.</div>
+    </div>
+    <hr class="divider">
+    <div class="persona-block">
+      <div class="persona-label" style="color:#f5c842">🎨 THE VISIONARY</div>
+      <div class="persona-text">Don't go back to save Apple. Go back to build something that has never existed, using Apple's skeleton as the scaffold. The iMac, the iPod, the iPhone — none of these exist yet, but they're inevitable given the right person with the right obsession. Apple under Jobs isn't a turnaround story. It's a founding story with existing infrastructure.</div>
+    </div>
+    <div class="verdict-block">
+      <div class="verdict-title">⚖ THE VERDICT</div>
+      <div class="verdict-position">POSITION: Take it. But don't go back to save Apple — go back to rebuild it as something that has never existed before. The turnaround frame is wrong. The founding frame is right.</div>
+      <div class="verdict-confidence">CONFIDENCE: 79% — Drops to 45% if the psychological wounds from 1985 haven't been resolved.</div>
+      <div class="verdict-label">Critical Risks</div>
+      <div class="risk-item"><span class="risk-name">Vindication Trap</span> — Returning to prove the board wrong poisons every product decision.</div>
+      <div class="risk-item"><span class="risk-name">Talent Exodus</span> — Cutting 13 product lines to 4 triggers panic before the vision is communicated.</div>
+      <div class="risk-item"><span class="risk-name">Microsoft Optics</span> — The $150M deal looks like defeat. Must be reframed as a strategic partnership.</div>
+      <div class="verdict-label">Next Steps</div>
+      <div class="step-item"><span class="step-num">1.</span>Spend 30 days listening only — understand what's broken before cutting anything.</div>
+      <div class="step-item"><span class="step-num">2.</span>Identify the 4 surviving product lines. Cancel everything else. No exceptions.</div>
+      <div class="step-item"><span class="step-num">3.</span>Find the 200 engineers worth keeping and tell them personally before restructuring.</div>
+      <div class="step-item"><span class="step-num">4.</span>Reframe the Microsoft deal publicly — "strategic partner," not "rescue."</div>
+      <div class="step-item"><span class="step-num">5.</span>Ship one unmistakably Apple product within 12 months. Make it the proof of concept.</div>
+      <div class="minority">
+        <div class="minority-label">⚔ MINORITY REPORT — THE ADVERSARY</div>
+        "The verdict may be historically correct. But in 1997, with the information available, the rational decision was to let Apple die and protect what you'd built at NeXT and Pixar. Returning was a bet that paid off. It was still a bet."
+      </div>
+    </div>
+  </div>
+
+  <!-- Decision 1: Elon Twitter -->
+  <div class="decision-panel" id="panel-1">
+    <div class="decision-question">🐦 "Should Elon Musk buy Twitter for $44 billion?" — The deal was already signed.</div>
+    <div class="persona-block">
+      <div class="persona-label" style="color:#ff5e5e">⚔ THE ADVERSARY</div>
+      <div class="persona-text">You are paying $44 billion for a company that has never been consistently profitable. The advertiser model is broken by design — brands don't want their ads next to controversy, and controversy is Twitter's entire value proposition. You're financing $13 billion with debt at interest rates that require cash this company has never generated. The math requires a miracle, and miracles are not a business plan.</div>
+    </div>
+    <hr class="divider">
+    <div class="persona-block">
+      <div class="persona-label" style="color:#4ade80">📈 THE STRATEGIST</div>
+      <div class="persona-text">The person who controls the infrastructure of public conversation controls the narrative layer of civilization. No other asset at any price gives you that. The strategic question isn't whether Twitter is worth $44B as a business — it's whether owning the global public square is worth $44B to someone with your specific ambitions across Tesla, SpaceX, and AI.</div>
+    </div>
+    <hr class="divider">
+    <div class="persona-block">
+      <div class="persona-label" style="color:#f5c842">🎨 THE VISIONARY</div>
+      <div class="persona-text">This isn't a media acquisition. It's the purchase of an identity verification layer, a real-time information network, and a payment infrastructure in embryonic form. WeChat built a $500B business on the same skeleton. The advertising model is irrelevant to what Twitter could be — the question is whether American users will accept a super-app.</div>
+    </div>
+    <div class="verdict-block">
+      <div class="verdict-title">⚖ THE VERDICT</div>
+      <div class="verdict-position">POSITION: Don't buy at $44B with $13B in debt financing. The strategic vision is real. The price and capital structure make execution nearly impossible before the debt destroys the asset.</div>
+      <div class="verdict-confidence">CONFIDENCE: 61% — One person's ambition has occasionally beaten these odds before.</div>
+      <div class="verdict-label">Critical Risks</div>
+      <div class="risk-item"><span class="risk-name">Advertiser Exodus</span> — Revenue collapse from content policy changes that no subscription growth offsets fast enough.</div>
+      <div class="risk-item"><span class="risk-name">Engineering Death Spiral</span> — Aggressive layoffs in a complex legacy codebase cause cascading failures.</div>
+      <div class="risk-item"><span class="risk-name">Governance Backlash</span> — Regulatory response to one person controlling global discourse limits platform evolution.</div>
+      <div class="verdict-label">Next Steps</div>
+      <div class="step-item"><span class="step-num">1.</span>Renegotiate the price — bot fraud is legitimate grounds for a $10-15B reduction.</div>
+      <div class="step-item"><span class="step-num">2.</span>Restructure to equity-heavy financing, not $13B LBO debt.</div>
+      <div class="step-item"><span class="step-num">3.</span>Retain the top 200 engineers before any announcement of cuts.</div>
+      <div class="step-item"><span class="step-num">4.</span>Build Twitter Blue to $1B ARR before touching content moderation.</div>
+      <div class="step-item"><span class="step-num">5.</span>Publish a clear governance charter before day one.</div>
+      <div class="minority">
+        <div class="minority-label">🎨 MINORITY REPORT — THE VISIONARY</div>
+        "Nobody who built something civilization-scale did it by optimizing the capital structure first. Sometimes the right move is to own the thing and figure out the model after."
+      </div>
+    </div>
+  </div>
+
+  <!-- Decision 2: Zuckerberg -->
+  <div class="decision-panel" id="panel-2">
+    <div class="decision-question">📘 "Should Mark Zuckerberg drop out of Harvard for Facebook?" — 1 million users, no revenue, active lawsuits.</div>
+    <div class="persona-block">
+      <div class="persona-label" style="color:#ff5e5e">⚔ THE ADVERSARY</div>
+      <div class="persona-text">1 million users is not a business. It's a popularity contest that hasn't discovered what it costs to run yet. You have no revenue model, no legal structure, and active lawsuits from people claiming they own part of it. The people telling you to drop out benefit from your full-time attention and bear none of the personal cost if this fails. Harvard will always be there.</div>
+    </div>
+    <hr class="divider">
+    <div class="persona-block">
+      <div class="persona-label" style="color:#4ade80">📈 THE STRATEGIST</div>
+      <div class="persona-text">Social networks are winner-take-all markets. The network effects that make Facebook valuable at 1 million users make it exponentially more valuable at 10 million, and nearly impossible to displace at 100 million. Every month you're managing coursework is a month MySpace consolidates the market. Speed is the only strategy here, and you cannot move at the required speed part-time.</div>
+    </div>
+    <hr class="divider">
+    <div class="persona-block">
+      <div class="persona-label" style="color:#f5c842">🎨 THE VISIONARY</div>
+      <div class="persona-text">The dropout debate is a distraction. What is Facebook actually building? If it's a college directory, the choice is real. If it's the social layer of the internet — the identity and connection infrastructure for every human being online — then asking whether to finish your homework before discovering fire is the wrong question entirely.</div>
+    </div>
+    <div class="verdict-block">
+      <div class="verdict-title">⚖ THE VERDICT</div>
+      <div class="verdict-position">POSITION: Drop out. Winner-take-all network dynamics make speed the only variable that matters, and 1 million organic users in 6 months is a signal too rare to treat as a part-time project.</div>
+      <div class="verdict-confidence">CONFIDENCE: 82% — The product-market fit signal and market structure together are unusually clear.</div>
+      <div class="verdict-label">Critical Risks</div>
+      <div class="risk-item"><span class="risk-name">Legal Exposure</span> — The ConnectU lawsuit and unclear equity agreements must be resolved before any funding round.</div>
+      <div class="risk-item"><span class="risk-name">Technical Scaling Cliff</span> — Dorm room infrastructure cannot handle 10 million users. Senior engineering hire needed in 60 days.</div>
+      <div class="risk-item"><span class="risk-name">Cofounder Misalignment</span> — Equity and commitment expectations are not explicit. Ambiguity becomes a crisis when money enters.</div>
+      <div class="verdict-label">Next Steps</div>
+      <div class="step-item"><span class="step-num">1.</span>Get a lawyer today. Resolve ConnectU and formalize all cofounder agreements.</div>
+      <div class="step-item"><span class="step-num">2.</span>Hire one senior engineer whose only job is infrastructure — not features.</div>
+      <div class="step-item"><span class="step-num">3.</span>Move the team to California — talent and investor density is not comparable anywhere else.</div>
+      <div class="step-item"><span class="step-num">4.</span>Raise $500k-$1M seed — enough for 18 months runway, not to spend.</div>
+      <div class="step-item"><span class="step-num">5.</span>Decide the revenue model before you need the answer.</div>
+      <div class="minority">
+        <div class="minority-label">⚔ MINORITY REPORT — THE ADVERSARY</div>
+        "The verdict is correct given what we know. In 2004, it was a 19-year-old betting his education on a product with no revenue and active lawsuits. It worked. It was still a bet."
+      </div>
+    </div>
+  </div>
+
+  <!-- Decision 3: Netflix -->
+  <div class="decision-panel" id="panel-3">
+    <div class="decision-question">📺 "Should Netflix abandon its profitable DVD business for streaming?" — 7 million subscribers, no streaming content, slow internet.</div>
+    <div class="persona-block">
+      <div class="persona-label" style="color:#ff5e5e">⚔ THE ADVERSARY</div>
+      <div class="persona-text">You have 7 million paying subscribers and positive cash flow. You want to trade that for a platform with no content, no rights deals, and an internet that buffers constantly for most households. "The future is streaming" is not a strategy — it's an observation. Cannibalizing your only profitable business to chase a format that doesn't work yet is not a pivot. It's a gamble.</div>
+    </div>
+    <hr class="divider">
+    <div class="persona-block">
+      <div class="persona-label" style="color:#4ade80">📈 THE STRATEGIST</div>
+      <div class="persona-text">The company that owns streaming habits in 2007 owns the entertainment relationship for the next generation of consumers. If you wait until streaming is obviously viable, you wait until the window is closing. Disney and the studios will build their own services the moment the market is proven. Your only advantage is moving before they realize they need to. The DVD business is not your future. It's your funding mechanism for building the future.</div>
+    </div>
+    <hr class="divider">
+    <div class="persona-block">
+      <div class="persona-label" style="color:#f5c842">🎨 THE VISIONARY</div>
+      <div class="persona-text">DVDs make Netflix a distribution company. Streaming makes Netflix a platform. Platforms have fundamentally different economics and ceilings than distribution businesses. There is no version of the DVD business where Netflix is the most powerful company in entertainment. There is a version of streaming where you are.</div>
+    </div>
+    <div class="verdict-block">
+      <div class="verdict-title">⚖ THE VERDICT</div>
+      <div class="verdict-position">POSITION: Build streaming aggressively, but do NOT kill the DVD business yet. Run both in parallel until streaming reaches 2 million subscribers — then accelerate the transition. The DVD business is your runway, not your enemy.</div>
+      <div class="verdict-confidence">CONFIDENCE: 76% — Drops to 55% if content rights deals with studios can't be closed at sustainable margins.</div>
+      <div class="verdict-label">Critical Risks</div>
+      <div class="risk-item"><span class="risk-name">Studio Leverage</span> — Studios will price streaming rights to capture most of the value. Original content is the only long-term solution.</div>
+      <div class="risk-item"><span class="risk-name">Subscriber Whiplash</span> — Forcing transition too fast destroys trust of 7 million customers who chose Netflix for DVDs.</div>
+      <div class="risk-item"><span class="risk-name">Competitive Window</span> — Amazon, Apple, and studios are watching. The window is 3-4 years, not 10.</div>
+      <div class="verdict-label">Next Steps</div>
+      <div class="step-item"><span class="step-num">1.</span>Close streaming rights deals with 3 major studios in 6 months — accept bad terms to get content.</div>
+      <div class="step-item"><span class="step-num">2.</span>Launch streaming as a feature included in the DVD subscription — zero transition friction.</div>
+      <div class="step-item"><span class="step-num">3.</span>Begin original content development planning now.</div>
+      <div class="step-item"><span class="step-num">4.</span>Get Netflix on game consoles and set-top boxes before competitors do.</div>
+      <div class="step-item"><span class="step-num">5.</span>Set internal milestone: when streaming hours exceed DVD hours per subscriber, begin transition.</div>
+      <div class="minority">
+        <div class="minority-label">⚔ MINORITY REPORT — THE ADVERSARY</div>
+        "The Qwikster experiment — the premature DVD separation — nearly destroyed the company. The Council's instinct to use DVD as runway rather than enemy would have avoided the worst mistake of the actual execution."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INSTALL -->
+<div class="install-section" id="install">
+  <div class="section-title">Install in 2 Minutes</div>
+  <div class="step-row">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <h4>Clone the repo</h4>
+      <div class="code-block">git clone https://github.com/itshussainsprojects/Claude-Council-Skill.git</div>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <h4>Open Claude.ai → Settings → Skills → Add Skill</h4>
+      <p>Upload the <code style="color:var(--accent)">council/</code> folder</p>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-circle">3</div>
+    <div class="step-content">
+      <h4>Just talk normally</h4>
+      <p>Say "Should I...", "Is this a good idea...", or "Convene the Council"</p>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top:32px;">
+    <a href="https://github.com/itshussainsprojects/Claude-Council-Skill" class="btn btn-primary" target="_blank" style="font-size:15px; padding:14px 32px;">⭐ Star on GitHub — It's Free</a>
+  </div>
+</div>
+
+<footer>
+  <div>Claude Council is free and open source — <a href="https://github.com/itshussainsprojects/Claude-Council-Skill" target="_blank">MIT License</a></div>
+  <div class="dev-credit">✦ Developed by Hussain Ali ✦</div>
+  <div style="margin-top:8px; font-size:11px;">The Council is not responsible for decisions made after consulting it.<br>The Council is responsible for making sure you've thought about them properly.</div>
+</footer>
+
+<script>
+function showDecision(index) {
+  document.querySelectorAll('.decision-panel').forEach((p,i) => {
+    p.classList.toggle('active', i === index);
+  });
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    t.classList.toggle('active', i === index);
+  });
+}
+</script>
+</body>
+</html>
