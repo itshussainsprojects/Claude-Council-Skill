@@ -245,7 +245,7 @@ CRITICAL RISKS:
 
 MINORITY REPORT: ⚔ THE ADVERSARY
 "Cleanup only works if someone owns it and enforces conventions.
-Without that authority, the codebase is back to this state in 3 months."
+Without the authority, the codebase is back to this state in 3 months."
 ```
 
 [See full output →](examples/technical-architecture.md)
